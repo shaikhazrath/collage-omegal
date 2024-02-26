@@ -40,24 +40,23 @@ const App = () => {
   if (loading) {
     return <h1>Loading...</h1>;
   }
-
   return (
-    <>
+    <Routes>
       {authenticated ? (
-        <Routes>
+        <>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/chatroom" element={<ChatRoom />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        </>
       ) : (
-        <Routes>
+        <>
           <Route path="/" element={<AuthHome />} />
           <Route path="/auth" element={<Auth />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        </>
       )}
-    </>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
+  
 };
 
 export default App;
