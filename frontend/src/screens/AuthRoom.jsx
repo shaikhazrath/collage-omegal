@@ -11,7 +11,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const handelSendOtp = async () => {
     try {
-      const response = await axios.post(`https://collage-omegal.vercel.app//auth`, {
+      const response = await axios.post(`https://collage-omegal.vercel.app/auth`, {
         email,
       });
       console.log(response);
@@ -24,7 +24,7 @@ const Auth = () => {
   };
   const verifyOtp = async () => {
     try {
-      const response = await axios.post(`https://collage-omegal.vercel.app//auth/verify`, {
+      const response = await axios.post(`https://collage-omegal.vercel.app/auth/verify`, {
         email,
         otp,
       });

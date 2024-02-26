@@ -17,7 +17,7 @@ const App = () => {
     const token = localStorage.getItem("token");
     try {
       await axios.get(
-        `https://collage-omegal.vercel.app//auth/checktoken`,
+        `https://collage-omegal.vercel.app/auth/checktoken`,
         {
           headers: {
             Authorization: token,
