@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import { IoSend } from "react-icons/io5";
 
 function ChatRoom() {
-  const URL = "http://192.168.55.107:8080";
+  const URL = "https://collage-omegal.vercel.app/";
   const [socket, setSocket] = useState(null);
   const [roomid, setRoomid] = useState(null);
   const [userid, setUserid] = useState(null);

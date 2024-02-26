@@ -7,7 +7,6 @@ import axios from "axios";
 import Auth from "./screens/AuthRoom";
 import AuthHome from "./screens/AuthHome";
 import NotFound from "./screens/NotFound";
-import VideoRoom from "./screens/VideoRoom";
 
 const App = () => {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const App = () => {
     const token = localStorage.getItem("token");
     try {
       await axios.get(
-        `http://192.168.55.107:8080/auth/checktoken`,
+        `https://collage-omegal.vercel.app//auth/checktoken`,
         {
           headers: {
             Authorization: token,
@@ -48,7 +47,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/chatroom" element={<ChatRoom />} />
-          <Route path="/videoroom" element={< VideoRoom/>} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

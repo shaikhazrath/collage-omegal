@@ -9,7 +9,11 @@ import Auth from './auth.js'
 import mongoose from "mongoose";
 import cors from 'cors'
 const app = express();
-app.use(cors())
+const corsOptions = {
+  origin: '*',
+};
+app.use(cors(corsOptions));
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: "*",
