@@ -10,13 +10,13 @@ import mongoose from "mongoose";
 import cors from 'cors'
 const app = express();
 const corsOptions = {
-  origin: 'https://collageomegle.netlify.app',
+  origin: '*',
 };
 app.use(cors(corsOptions));
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: "https://collageomegle.netlify.app",
+  cors: "*",
 });
 app.use(express.json());
 
