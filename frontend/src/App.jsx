@@ -35,7 +35,7 @@ const App = () => {
   };
   useEffect(() => {
     getAuthstatus();
-  }, [authenticated]);
+  }, [authenticated,navigate]);
 
   if (loading) {
     return <h1>Loading...</h1>;
