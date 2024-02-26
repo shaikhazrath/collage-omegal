@@ -62,7 +62,7 @@ router.post("/", async (req, res) => {
         });
     }
     const otp = generateOTP();
-
+    console.log(otp)
     sendOTP(email, otp, "register-user");
 
     user.otp = otp;
@@ -78,8 +78,6 @@ router.post("/", async (req, res) => {
 router.post("/verify", async (req, res) => {
   try {
     const { email, otp } = req.body;
-
-
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found" });

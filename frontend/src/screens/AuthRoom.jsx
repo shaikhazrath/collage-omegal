@@ -11,19 +11,20 @@ const Auth = () => {
   const navigate = useNavigate();
   const handelSendOtp = async () => {
     try {
-      const response = await axios.post("http://192.168.55.107:8080/auth", {
+      const response = await axios.post(`http://192.168.55.107:8080/auth`, {
         email,
       });
       console.log(response);
       setOtpStatus(true);
       setError('')
     } catch (error) {
+      console.log(error)
       setError(error.response.data.error);
     }
   };
   const verifyOtp = async () => {
     try {
-      const response = await axios.post("http://192.168.55.107:8080/auth/verify", {
+      const response = await axios.post(`http://192.168.55.107:8080/auth/verify`, {
         email,
         otp,
       });

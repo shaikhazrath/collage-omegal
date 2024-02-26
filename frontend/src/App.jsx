@@ -7,6 +7,8 @@ import axios from "axios";
 import Auth from "./screens/AuthRoom";
 import AuthHome from "./screens/AuthHome";
 import NotFound from "./screens/NotFound";
+import VideoRoom from "./screens/VideoRoom";
+
 const App = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -46,6 +48,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/chatroom" element={<ChatRoom />} />
+          <Route path="/videoroom" element={< VideoRoom/>} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       ) : (
