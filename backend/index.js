@@ -16,7 +16,7 @@ app.use(cors(corsOptions));
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: "https://collageomegle.netlify.app/",
+  cors: "https://collageomegle.netlify.app",
 });
 app.use(express.json());
 
