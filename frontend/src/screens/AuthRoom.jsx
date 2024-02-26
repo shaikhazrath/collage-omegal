@@ -19,7 +19,7 @@ const Auth = () => {
       setError('')
     } catch (error) {
       console.log(error)
-      // setError(error.response.data.error);
+      setError(error.response.data.error);
     }
   };
   const verifyOtp = async () => {
