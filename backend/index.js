@@ -16,7 +16,7 @@ app.use(cors(corsOptions));
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: "*",
+  cors: "https://collage-omegal-9j7b.vercel.app",
 });
 app.use(express.json());
 
