@@ -11,7 +11,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const handelSendOtp = async () => {
     try {
-      const response = await axios.post(`https://collage-omegal.vercel.app/auth`, {
+      const response = await axios.post(`https://collage-omegal.onrender.com/auth`, {
         email,
       });
       console.log(response);
@@ -19,12 +19,12 @@ const Auth = () => {
       setError('')
     } catch (error) {
       console.log(error)
-      setError(error.response.data.error);
+      // setError(error.response.data.error);
     }
   };
   const verifyOtp = async () => {
     try {
-      const response = await axios.post(`https://collage-omegal.vercel.app/auth/verify`, {
+      const response = await axios.post(`https://collage-omegal.onrender.com/auth/verify`, {
         email,
         otp,
       });

@@ -17,7 +17,7 @@ const App = () => {
     const token = localStorage.getItem("token");
     try {
       await axios.get(
-        `https://collage-omegal.vercel.app/auth/checktoken`,
+        `https://collage-omegal.onrender.com/auth/checktoken`,
         {
           headers: {
             Authorization: token,
@@ -47,7 +47,6 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/chatroom" element={<ChatRoom />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       ) : (
