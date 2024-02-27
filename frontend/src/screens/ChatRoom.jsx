@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
 import { IoSend } from "react-icons/io5";
+import Loading from "./Loading";
 
 function ChatRoom() {
   const URL = "https://collage-omegal.onrender.com";
@@ -72,7 +73,7 @@ function ChatRoom() {
   return (
     <>
       {waiting ? (
-        <h1>waiting</h1>
+        <Loading/>
       ) : (
         <div className="bg-black">
           <div className="h-[7vh] bg-gray-900 p-1 flex justify-between items-center px-2 font-bold uppercase">

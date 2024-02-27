@@ -1,14 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import bg from "../assets/bg.jpg"; 
+import bg from "../assets/bg.jpg";
 
 const Auth = () => {
-  const [email, setEmail] = useState();
-  const [otp, setOtp] = useState();
+  const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState("");
   const [otpStatus, setOtpStatus] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
+  const [otpTimer, setOtpTimer] = useState(120); 
   const navigate = useNavigate();
+
+  const startOtpTimer = () => {
+    setOtpTimer(120);
+    const interval = setInterval(() => {
+      setOtpTimer((prevTimer) => {
+        if (prevTimer === 0) {
+          clearInterval(interval); 
+          setOtpStatus(false); 
+        }
+        return prevTimer - 1;
+      });
+    }, 1000);
+  };
+
   const handelSendOtp = async () => {
     try {
       const response = await axios.post(`https://collage-omegal.onrender.com/auth`, {
@@ -16,12 +31,14 @@ const Auth = () => {
       });
       console.log(response);
       setOtpStatus(true);
-      setError('')
+      setError("");
+      startOtpTimer(); // Start the OTP timer when OTP is sent
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setError(error.response.data.error);
     }
   };
+
   const verifyOtp = async () => {
     try {
       const response = await axios.post(`https://collage-omegal.onrender.com/auth/verify`, {
@@ -30,13 +47,14 @@ const Auth = () => {
       });
       console.log(response.data.user.isAdmin);
       localStorage.setItem("token", response.data.token);
-       navigate('/')
-       window.location.reload()
+      navigate("/");
+      window.location.reload();
     } catch (error) {
-      console.log(error)
+      console.log(error);
       setError(error.response.data.message);
     }
   };
+
   return (
     <div
       className="flex justify-center items-center h-screen flex-col bg-black  gap-3 bg-cover bg-center"
@@ -54,7 +72,7 @@ const Auth = () => {
         <input
           type="email"
           placeholder="email"
-          class="block w-full py-3 px-2  text-lg text-gray-900 border border-gray-300 rounded-lg focus:border-none"
+          className="block w-full py-3 px-2  text-lg text-gray-900 border border-gray-300 rounded-lg focus:border-none"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -64,24 +82,26 @@ const Auth = () => {
           onClick={handelSendOtp}
           className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300  shadow-lg shadow-orange-500/50 font-medium rounded-md text-xl px-5 py-2.5 text-center me-2 mb-2   my-5 "
         >
-          {otpStatus ? "resend" : "GET-OTP"}
+          {otpStatus ? "Resend OTP" : "GET OTP"}
         </Link>
 
         {otpStatus && (
           <>
+            <p className="text-white font-bold text-xl">Time remaining: {otpTimer}s</p>
+
             <input
               type="number"
               placeholder="otp"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
               required
-              class="block w-full p-4  text-xl text-gray-900 border border-gray-300 rounded-lg focus:border-none"
+              className="block w-full p-4  text-xl text-gray-900 border border-gray-300 rounded-lg focus:border-none"
             />
             <Link
               onClick={verifyOtp}
               className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300  shadow-lg shadow-orange-500/50 font-medium rounded-md text-xl px-5 py-2.5 text-center me-2 mb-2   mt-5 "
             >
-              submit
+              Submit
             </Link>
           </>
         )}

@@ -7,6 +7,7 @@ import axios from "axios";
 import Auth from "./screens/AuthRoom";
 import AuthHome from "./screens/AuthHome";
 import NotFound from "./screens/NotFound";
+import Loading from "./screens/Loading";
 
 const App = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const App = () => {
   }, [authenticated,navigate]);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Loading/>;
   }
   return (
     <Routes>
