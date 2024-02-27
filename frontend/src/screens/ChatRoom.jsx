@@ -122,7 +122,7 @@ useEffect(() => {
               id="message-input"
               type="text"
               value={messageInput}
-              onChange={handleMessageInputChange
+              onChange={handleMessageInputChange}
               className="rounded-md w-full flex-grow p-1"
               placeholder="Type your message here..."
             />
