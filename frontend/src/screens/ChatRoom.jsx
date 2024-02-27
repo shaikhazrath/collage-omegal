@@ -23,7 +23,7 @@ useEffect(() => {
     const timer = setTimeout(() => {
       // Redirect the user to '/'
       window.location.href = '/';
-    }, 120000); // 2 minutes in milliseconds
+    }, 220000); // 2 minutes in milliseconds
 
     // Clear the timer if the input changes
     return () => clearTimeout(timer);
