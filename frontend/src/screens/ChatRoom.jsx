@@ -19,7 +19,20 @@ function ChatRoom() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+useEffect(() => {
+    const timer = setTimeout(() => {
+      // Redirect the user to '/'
+      window.location.href = '/';
+    }, 120000); // 2 minutes in milliseconds
 
+    // Clear the timer if the input changes
+    return () => clearTimeout(timer);
+  }, [messageInput]);
+
+  // Update the message input state when it changes
+  const handleMessageInputChange = (e) => {
+    setMessageInput(e.target.value);
+  };
   useEffect(() => {
     const socket = new io(URL);
     setSocket(socket);
@@ -109,7 +122,7 @@ function ChatRoom() {
               id="message-input"
               type="text"
               value={messageInput}
-              onChange={(e) => setMessageInput(e.target.value)}
+              onChange={handleMessageInputChange
               className="rounded-md w-full flex-grow p-1"
               placeholder="Type your message here..."
             />
